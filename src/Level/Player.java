@@ -379,6 +379,15 @@ public abstract class Player extends GameObject {
         }
     }
 
+    //getters and setters
+    public void setWalkSpeed(float walkSpeed) {
+        this.walkSpeed = walkSpeed;
+    }
+
+    public float getWalkSpeed() {
+        return walkSpeed;
+    }
+
     public PlayerState getPlayerState() {
         return playerState;
     }

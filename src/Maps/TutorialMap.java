@@ -3,9 +3,7 @@ package Maps;
 import Enemies.UFOEnemy;
 import Enemies.BugEnemy;
 import Engine.ImageLoader;
-import EnhancedMapTiles.Coin;
-import EnhancedMapTiles.EndLevelBox;
-import EnhancedMapTiles.HorizontalMovingPlatform;
+import EnhancedMapTiles.*;
 import GameObject.Rectangle;
 import Level.*;
 import Tilesets.CommonTileset;
@@ -67,6 +65,9 @@ public class TutorialMap extends Map {
                 TileType.PASSABLE,
                 3
         ));
+        //enhancedMapTiles.add(new PowerUp(ImageLoader.load("Lazer.png"),getPositionByTileIndex(11,5)));
+        enhancedMapTiles.add(new SpeedBoost(getPositionByTileIndex(11,5)));
+
 
 
         return enhancedMapTiles;
