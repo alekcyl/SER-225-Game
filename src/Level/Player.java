@@ -379,13 +379,50 @@ public abstract class Player extends GameObject {
         }
     }
 
+
+
+
     //getters and setters
     public void setWalkSpeed(float walkSpeed) {
         this.walkSpeed = walkSpeed;
     }
-
     public float getWalkSpeed() {
         return walkSpeed;
+    }
+
+    public void setJumpHeight(float jumpHeight) {
+        this.jumpHeight = jumpHeight;
+    }
+    public float getJumpHeight() {
+        return jumpHeight;
+    }
+
+    public boolean isInvincible() {
+        return isInvincible;
+    }
+    public void setInvincible(boolean invincible) {
+        isInvincible = invincible;
+    }
+
+    public float getJumpDegrade() {
+        return jumpDegrade;
+    }
+    public void setJumpDegrade(float jumpDegrade) {
+        this.jumpDegrade = jumpDegrade;
+    }
+
+    public float getGravity() {
+        return gravity;
+    }
+    public void setGravity(float gravity) {
+        this.gravity = gravity;
+    }
+
+    public float getTerminalVelocityY() {
+        return terminalVelocityY;
+    }
+    public void setTerminalVelocityY(float terminalVelocityY) {
+        this.terminalVelocityY = terminalVelocityY;
     }
 
     public PlayerState getPlayerState() {

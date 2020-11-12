@@ -65,8 +65,10 @@ public class TutorialMap extends Map {
                 TileType.PASSABLE,
                 3
         ));
-        //enhancedMapTiles.add(new PowerUp(ImageLoader.load("Lazer.png"),getPositionByTileIndex(11,5)));
-        enhancedMapTiles.add(new SpeedBoost(getPositionByTileIndex(11,5)));
+        //enhancedMapTiles.add(new SpeedBoost(getPositionByTileIndex(11,5)));
+        //enhancedMapTiles.add(new JumpBoost(getPositionByTileIndex(11,5)));
+        //enhancedMapTiles.add(new Invincibility(getPositionByTileIndex(11,5)));
+        enhancedMapTiles.add(new LowGravity(getPositionByTileIndex(11,4)));
 
 
 

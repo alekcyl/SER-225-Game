@@ -7,53 +7,45 @@ import Utils.Point;
 
 import java.awt.image.BufferedImage;
 
-public class SpeedBoost extends PowerUp{
+public class JumpBoost extends PowerUp{
     private boolean collected = false;
 
-
-    public SpeedBoost(Point Location) {
-        super(ImageLoader.load("Lazer.png"), Location); //replace later with correct sprite
+    public JumpBoost(Point Location) {
+        super(ImageLoader.load("Lazer.png"), Location);
 
         this.initialize();
     }
 
-    @Override
-    public void initialize() {
-        super.initialize();
-    }
+
 
     @Override
     public void update(Player player) {
         if (intersects(player)) {
             if(collected) {
                 //do nothing if already collected
-            } else {//action to happen when collected
+            } else {
                 collected = true;
-                this.speed(player);
+                this.jump(player);
 
             }
         }
 
     }
-    //saves current speed under cSpeed variable
-    //increases speed by a set amount
-    //changes speed back to original after set amount of time
-    public void speed(Player player){
-        float cSpeed = player.getWalkSpeed();
-        player.setWalkSpeed(cSpeed+ 3);
-        //Timer to set back speed after set amount of time
+
+    public void jump(Player player){
+        float cJump = player.getJumpDegrade();
+        player.setJumpDegrade(cJump - .3f);
+        //Timer to set back jump after set amount of time
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        player.setWalkSpeed(cSpeed); //speed is changed back here
+                        player.setJumpDegrade(cJump); //Jump height is changed back here
                     }
                 },
-                5000 //set time here
+                7000 //set time here
         );
-
     }
-
 
     public void draw(GraphicsHandler graphicsHandler) {
         if(collected == false) {
@@ -61,5 +53,5 @@ public class SpeedBoost extends PowerUp{
         }
     }
 
-}
 
+}
