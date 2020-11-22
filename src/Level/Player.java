@@ -3,15 +3,12 @@ package Level;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
-import Game.ScreenCoordinator;
 import GameObject.GameObject;
 import GameObject.SpriteSheet;
 import Utils.AirGroundState;
 import Utils.Direction;
-import Utils.Stopwatch;
 
 import java.util.ArrayList;
-import java.util.Timer;
 
 public abstract class Player extends GameObject {
     //Score
@@ -23,18 +20,6 @@ public abstract class Player extends GameObject {
         return score;
     }
     //END SCORE
-
-    //LIVES
-    private int life = 3;
-    public void loseLife() {life--;}
-    public int getLife() {return life;}
-
-    //END LIVES
-    //LIVES TIMER
-    private Stopwatch attackTimer = new Stopwatch();
-    public boolean canHurt() {
-        return(attackTimer.isTimeUp());
-    }
 
 
     // values that affect player movement
@@ -87,9 +72,6 @@ public abstract class Player extends GameObject {
         playerState = PlayerState.STANDING;
         previousPlayerState = playerState;
         levelState = LevelState.RUNNING;
-
-        //player can only be attacked every 2 seconds
-        attackTimer.setWaitTime(2000);
     }
 
     public void update() {
@@ -331,30 +313,12 @@ public abstract class Player extends GameObject {
         }
     }
 
-
-
     // other entities can call this method to hurt the player
     public void hurtPlayer(MapEntity mapEntity) {
         if (!isInvincible) {
             // if map entity is an enemy, kill player on touch
             if (mapEntity instanceof Enemy) {
-
-                if(attackTimer.isTimeUp()) {
-                    attackTimer.reset();
-                    setPlayerState(PlayerState.JUMPING);
-                    life--;
-                    System.out.println("Lives Left" + life);
-                }
-
-
-                //System.out.println(life);
-                if(life <= 0) {
-                    levelState = LevelState.PLAYER_DEAD;
-                }else{
-
-                }
-
-
+                levelState = LevelState.PLAYER_DEAD;
             }
         }
     }
@@ -400,7 +364,7 @@ public abstract class Player extends GameObject {
         }
         // if death animation not on last frame yet, continue to play out death animation
         else if (currentFrameIndex != getCurrentAnimation().length - 1) {
-            super.update();
+          super.update();
         }
         // if death animation on last frame (it is set up not to loop back to start), player should continually fall until it goes off screen
         else if (currentFrameIndex == getCurrentAnimation().length - 1) {
@@ -443,4 +407,3 @@ public abstract class Player extends GameObject {
         listeners.add(listener);
     }
 }
-
