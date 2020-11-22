@@ -1,7 +1,6 @@
 package Screens;
 
 import Engine.GraphicsHandler;
-import Engine.ImageLoader;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
@@ -11,13 +10,10 @@ import Level.PlayerListener;
 import Maps.TestMap;
 import Maps.TutorialMap;
 import Players.Cat;
-import SpriteFont.SpriteFont;
 import Utils.Stopwatch;
 import Maps.OneMap;
 import Maps.TwoMap;
 import Maps.ThreeMap;
-
-import java.awt.*;
 
 // This class is for when the platformer game is actually being played
 public class PlayLevelScreen extends Screen implements PlayerListener {
@@ -49,7 +45,6 @@ public class PlayLevelScreen extends Screen implements PlayerListener {
 
     //END LIVES
 
-
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
 
@@ -59,7 +54,6 @@ public class PlayLevelScreen extends Screen implements PlayerListener {
     }
 
     public void initialize() {
-
         // define/setup map
 
         this.map = screenCoordinator.getMap(); //TestMap()
@@ -87,7 +81,6 @@ public class PlayLevelScreen extends Screen implements PlayerListener {
                 } else {
                     lives.setColor(Color.YELLOW);
                 }
-
                 player.update();
                 map.update(player);
                 break;
@@ -119,7 +112,6 @@ public class PlayLevelScreen extends Screen implements PlayerListener {
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
-
         // based on screen state, draw appropriate graphics
         switch (playLevelScreenState) {
             case RUNNING:
@@ -135,9 +127,6 @@ public class PlayLevelScreen extends Screen implements PlayerListener {
                 levelLoseScreen.draw(graphicsHandler);
                 break;
         }
-
-        graphicsHandler.drawImage(ImageLoader.load("heart.png"), 20, 2, 45, 45);
-        lives.draw(graphicsHandler);
     }
 
     public PlayLevelScreenState getPlayLevelScreenState() {
