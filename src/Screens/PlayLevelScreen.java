@@ -25,6 +25,26 @@ public class PlayLevelScreen extends Screen implements PlayerListener {
     protected LevelClearedScreen levelClearedScreen;
     protected LevelLoseScreen levelLoseScreen;
 
+    //LIVES
+    private SpriteFont lives = new SpriteFont("3", 34, 38, "Comic Sans", 30, new Color(238, 232, 170));
+    int numLives = 0;
+    public void setNumLives(int in) {
+        numLives = in;
+    }
+    public int getNumLives() {
+        return numLives;
+    }
+    public void updateLivesText() {
+        lives.setText(String.valueOf(numLives));
+    }
+
+
+    public void setLivesColor(Color c){
+        lives.setColor(c);
+    }
+
+    //END LIVES
+
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
 
@@ -52,6 +72,15 @@ public class PlayLevelScreen extends Screen implements PlayerListener {
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going
             case RUNNING:
+                //update score
+                lives.setText(String.valueOf(player.getLife()));
+
+                //change color if low lifes
+                if(player.getLife() == 1) {
+                    lives.setColor(Color.BLACK);
+                } else {
+                    lives.setColor(Color.YELLOW);
+                }
                 player.update();
                 map.update(player);
                 break;
